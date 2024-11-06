@@ -21,40 +21,37 @@ FROM Apple.dbo.stagging_nsh
 
 WITH Duplicate_records_CTE AS
 (
-	SELECT *, ROW_NUMBER() 
-	OVER(PARTITION BY 
-        ParcelID, 
-        PropertyAddress,
-        SalePrice,
-        LegalReference ORDER BY
-        UniqueID) AS row_num										
-	FROM Apple.dbo.stagging_nsh
+SELECT *, ROW_NUMBER() 
+OVER(PARTITION BY 
+    ParcelID, 
+    PropertyAddress,
+    SalePrice,
+    LegalReference ORDER BY
+    UniqueID) AS row_num										
+FROM Apple.dbo.stagging_nsh
 ) 
 SELECT *
 FROM Duplicate_records_CTE
 WHERE row_num > 1       -- return all the duplicate records 
 ; 
 
-
 --Delete the duplicate records permently 
 
 WITH Duplicate_records_CTE AS
 (
-	SELECT *, ROW_NUMBER() 
-	OVER(PARTITION BY 
-        ParcelID, 
-        PropertyAddress,
-        SalePrice,
-        LegalReference ORDER BY
-        UniqueID) AS row_num										
-	FROM Apple.dbo.stagging_nsh
+SELECT *, ROW_NUMBER() 
+OVER(PARTITION BY 
+    ParcelID, 
+    PropertyAddress,
+    SalePrice,
+    LegalReference ORDER BY
+    UniqueID) AS row_num										
+FROM Apple.dbo.stagging_nsh
 ) 
 DELETE 
 FROM Duplicate_records_CTE
 WHERE row_num > 1   --succesfully deleted the duplicated records 
 ;
-
-
 
 -- Drop columns that is not neccessary for analysis 
 
