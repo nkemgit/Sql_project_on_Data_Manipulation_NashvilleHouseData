@@ -8,13 +8,12 @@ FROM Apple.dbo.stagging_nsh
 ;
 
 SELECT *, ROW_NUMBER() 
-		  OVER(PARTITION BY 
-						ParcelID, 
-						PropertyAddress,
-						SalePrice,
-						LegalReference ORDER BY
-											UniqueID) AS row_num
-											
+OVER(PARTITION BY 
+    ParcelID, 
+    PropertyAddress,
+    SalePrice,
+    LegalReference ORDER BY
+    UniqueID) AS row_num										
 FROM Apple.dbo.stagging_nsh
 ;
 
@@ -23,13 +22,12 @@ FROM Apple.dbo.stagging_nsh
 WITH Duplicate_records_CTE AS
 (
 	SELECT *, ROW_NUMBER() 
-			  OVER(PARTITION BY 
-							ParcelID, 
-							PropertyAddress,
-							SalePrice,
-							LegalReference ORDER BY
-												UniqueID) AS row_num
-											
+	OVER(PARTITION BY 
+        ParcelID, 
+        PropertyAddress,
+        SalePrice,
+        LegalReference ORDER BY
+        UniqueID) AS row_num										
 	FROM Apple.dbo.stagging_nsh
 ) 
 SELECT *
@@ -43,13 +41,12 @@ WHERE row_num > 1       -- return all the duplicate records
 WITH Duplicate_records_CTE AS
 (
 	SELECT *, ROW_NUMBER() 
-			  OVER(PARTITION BY 
-							ParcelID, 
-							PropertyAddress,
-							SalePrice,
-							LegalReference ORDER BY
-												UniqueID) AS row_num
-											
+	OVER(PARTITION BY 
+        ParcelID, 
+        PropertyAddress,
+        SalePrice,
+        LegalReference ORDER BY
+        UniqueID) AS row_num										
 	FROM Apple.dbo.stagging_nsh
 ) 
 DELETE 

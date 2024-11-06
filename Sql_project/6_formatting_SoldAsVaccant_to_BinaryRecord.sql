@@ -29,12 +29,13 @@ ADD SoldAsVacant_status VARCHAR(255) --create a new column name  SoldAsVacant_st
 ;
 
 UPDATE Apple.dbo.stagging_nsh
-SET SoldAsVacant_status = CASE
-							WHEN SoldAsVacant = 'Y' THEN 'Yes'
-							WHEN SoldAsVacant = 'N' THEN 'No'
-							ELSE SoldAsVacant
-						  END 
-					FROM Apple.dbo.stagging_nsh
+SET SoldAsVacant_status = 
+CASE
+    WHEN SoldAsVacant = 'Y' THEN 'Yes'
+    WHEN SoldAsVacant = 'N' THEN 'No'
+    ELSE SoldAsVacant
+END 
+FROM Apple.dbo.stagging_nsh
 ;
 
 -- confirmation of the transformation 'SoldAsVacant'
