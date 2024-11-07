@@ -1,5 +1,3 @@
-
-Here’s a brief statement you can use for your GitHub project:
 Data Manipulation Project using PostgreSQL
 
 In this project, I performed data manipulation tasks using a PostgreSQL database, which involved a two-stage process: Cleaning and Exploration. Key steps included:
