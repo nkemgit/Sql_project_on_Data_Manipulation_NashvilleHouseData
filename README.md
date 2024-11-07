@@ -1,5 +1,5 @@
 
-#Here’s a brief statement you can use for your GitHub project:
+**Here’s a brief statement you can use for your GitHub project:
 
 ##Data Manipulation Project using PostgreSQL
 
